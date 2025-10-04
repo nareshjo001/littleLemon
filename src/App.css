@@ -1,26 +1,32 @@
-
-body{
+/* =====================
+  Global Styles
+===================== */
+body {
   width: 100%;
   margin: 0 auto;
 }
 
-li{
+li {
   list-style: none;
 }
-a{
+
+a {
   text-decoration: none;
 }
 
-nav{
+/* =====================
+  Navigation Bar
+===================== */
+nav {
   z-index: 10001;
 }
-
 
 .navbar {
   padding: 10px 13%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #D9D9D9;
 }
 
 nav ul li {
@@ -28,15 +34,34 @@ nav ul li {
   padding: 1em;
 }
 
-nav ul li a{
-  color: #000;
+nav ul li a {
+  position: relative;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 500;
+  color: #495E57;
+  transition: color 0.3s ease;
+  text-decoration: none;
 }
 
-nav ul li a:hover{
-  text-decoration: underline solid #495E57;
-  
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #495e57;
+  transition: width 0.3s ease;
 }
 
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+Navigation Bar in Mobile
+===================== */
 .menu-icon {
   display: none;
   cursor: pointer;
@@ -54,7 +79,6 @@ nav ul li a:hover{
   display: flex;
   align-items: center;
 }
-
 .nav-links.visible {
   flex-direction: column;
   position: absolute;
@@ -68,20 +92,19 @@ nav ul li a:hover{
   transition: all 0.3s ease-in-out;
 }
 
-
-/* header section */
-
+/* =====================
+  Hero / Header Section
+===================== */
 .header {
   background-color: #495e57;
   padding: 40px 0;
 }
 
 .header section {
-color: #EDEFEE;
-padding: 10px 13%;
-position: relative;
+  color: #EDEFEE;
+  padding: 10px 13%;
+  position: relative;
 }
-
 
 h2 {
   color: #F4CE14;
@@ -93,7 +116,7 @@ h3 {
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 18px;
   max-width: 520px;
   line-height: 1.5;
   margin-bottom: 30px;
@@ -111,7 +134,12 @@ button {
   cursor: pointer;
 }
 
-.banner-img{
+button:hover {
+  color: white;
+  background-color: black;
+}
+
+.banner-img {
   position: absolute;
   right: 13%;
   top: 15%;
@@ -124,130 +152,383 @@ button {
   border-radius: 20px;
 }
 
-
-form, .comfirm{
-  padding: 10px 13%;
+/* =====================
+  Booking Form Section
+===================== */
+form {
+  background-color: #D9D9D9;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.formField{
-  padding: 50px 20px;
-}
-
-input, label{
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-#book-date, #book-time, #book-guests, #book-occasion{
-  background: #bdbdbd43;
-  padding: 8px 24px;
+form fieldset {
   border: none;
-  outline: none;
-  border-radius: 2px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.btnReceive input{
+form div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+input[type="date"],
+input[type="number"],
+select {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
   padding: 12px 16px;
-  margin-top: 20px;
-  background: #495e57;
-  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+  appearance: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input:focus,
+select:focus {
+  border: 2px solid #495E57;
+}
+
+.btnReceive input[type="submit"] {
+  width: 100%;
+  background-color: #F4CE14;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 0;
   border: none;
-  border-radius: 4px;
-
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
 }
 
-.comfirm span{
-  color: blue;
+.btnReceive input[type="submit"]:hover {
+  background-color: #495E57;
+  color: #fff;
 }
 
+.btnReceive input[type="submit"]:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
 
-/* menu items */
+/* =====================
+  Booking Confirm Section
+===================== */
+.confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: -100px;
+  background-color: #fff;
+}
 
-.menu-container{
+.confirm h1 {
+  font-size: 40px;
+  color: #333;
+  font-weight: 650;
+}
+
+.confirm h1 span {
+  color: #f4ce14;
+}
+
+/* =====================
+  Menu Section
+===================== */
+.menu-container {
   margin: 110px auto;
   padding: 10px 13%;
 }
 
-.menu-container h2{
+.menu-container h2 {
   color: #000;
 }
 
-.menu-header{
+.menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
-.cards{
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem 1rem;
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 25px;
 }
 
-.menu-items{
-  /* height: 400px; */
-  width: 350px;
-  background: #a9c8be;
-  border-radius: 8px;
+.menu-items {
+  background: #EDEFEE;
+  border-radius: 16px;
 }
 
-.menu-container img{
+.menu-container img {
   width: 100%;
-  height: 233px;
-  border-radius: 8px;
+  height: 200px;
+  border-radius: 16px;
 }
 
-.menu-content{
-  padding: 5px 15px;
+.menu-content {
+  padding: 8px 15px;
 }
 
-
-.menu-content .heading{
+.menu-content .heading {
   display: flex;
-  justify-content: space-between;
-}
-
-.orderbtn{
-  padding: 5px 12px;
-  margin-bottom: 20px;
   font-size: 16px;
-  font-weight: 600;
+  justify-content: space-between;
 }
 
-footer section{
+.menu-content .heading p {
+  color: orange;
+}
+
+.menu-content p {
+  margin-top: 10px;
+}
+
+.orderBtn {
+  padding: 5px 12px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+/* =====================
+  Testimonials Section
+===================== */
+.testimonials-parent {
+  margin: 110px auto 40px auto;
   padding: 10px 13%;
+  margin-top: -40px;
+  background-color: #D9D9D9;
+}
+
+.testimonials-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #495E57;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.reviewer-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.name-rating {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+}
+
+.reviewer-rating {
+  font-weight: 500;
+  font-size: 16px;
+  color: #F4CE14;
+}
+
+.review-text p {
+  font-size: 15px;
+  margin-top: 5px;
+  line-height: 1.5;
+  color: #495E57;
+  text-align: center;
+}
+
+.testimonial:hover {
+  transform: scale(1.02);
+}
+
+/* =====================
+  About Section
+===================== */
+.about-container {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-end;
+  padding: 0 13%;
+  margin-top: -10px;
+  margin-bottom: 50px;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
-.company-info img{
+.about-texts {
+  flex: 1;
+  max-width: 500px;
+}
+
+.about-texts h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #F4CE14;
+}
+
+.about-texts h3 {
+  font-size: 25px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.about-texts p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.owner-img {
+  position: relative;
+  flex: 1;
+  display: block;
+  margin-left: 80px;
+  margin-bottom: -50px;
+}
+
+.owner-img img {
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.owner-img img:first-child {
+  position: relative;
+  z-index: 2;
+  left: 50px;
+}
+
+.owner-img img:last-child {
+  position: relative;
+  top: -50px;
+  z-index: 1;
+}
+
+/* =====================
+  Footer Section
+===================== */
+footer section {
+  padding: 50px 13%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: #d9d9d9;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.company-info img {
   margin-top: 12px;
   cursor: pointer;
   width: 200px;
 }
 
-.company-info p{
+.company-info p {
   width: 320px;
+  margin-top: 16px;
+  line-height: 1.6;
+  color: #333;
 }
 
-footer h3{
+footer h3 {
   font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 12px;
 }
 
-footer ul{
+footer ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-footer ul li{
-  padding: 8px 0;
+footer ul li {
+  padding: 6px 0;
+  font-size: 15px;
 }
 
+footer a {
+  text-decoration: none;
+  color: #495e57;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
 
-@media screen and (max-width: 768px){
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #495e57;
+  transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+   📱 Responsive Queries
+===================== */
+@media screen and (max-width: 768px) {
+  /* Navigation */
   .menu-icon {
     display: block;
   }
@@ -263,51 +544,97 @@ footer ul li{
     padding: 20px 0;
   }
 
-  .navbar{
-    background:#fff;
+  .navbar {
+    background: #fff;
     padding: 10px 8%;
   }
 
-  nav ul li a{
+  nav ul li a {
     color: #fff;
   }
 
-  .bar{
+  .bar {
     background: #333333;
   }
 
-  .banner-img{
-    display: none;
+  /* Hero / Header */
+  .header section {
+    padding: 10px 5%;
   }
 
-  form, .comfirm{
-    padding: 10px 8%;
+  h2 {
+    font-size: 30px;
   }
 
-
-  .header section, .menu-container{
-    padding: 10px 8%;
-  }
-  .menu-container{
-    margin: 20px 0;
-  }
-  .menu-header{
-    justify-content: flex-start;
+  h3 {
+    font-size: 20px;
   }
 
-  .menu-items{
+  .banner p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .banner-img {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .banner-img img {
+    height: auto;
     width: 100%;
   }
 
-  footer section{
-    padding: 10px 8%;
+  /* Menu Section */
+  .menu-container {
+    padding: 10px 5%;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  /* About Section */
+  .about-container {
     flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+    margin-bottom: 20px;
   }
-  .company-info p{
+
+  .owner-img {
+    margin-left: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .owner-img img:first-child {
+    left: 0;
+    margin-bottom: 20px;
+  }
+
+  .owner-img img:last-child {
+    top: 0;
+  }
+
+  /* Footer */
+  footer section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 5%;
+  }
+
+  .company-info img {
+    width: 150px;
+  }
+
+  .company-info p {
     width: 100%;
   }
-}
-
-.hidden{
-  display: none;
 }

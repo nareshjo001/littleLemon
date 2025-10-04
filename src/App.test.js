@@ -1,30 +1,48 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import { render, screen, fireEvent } from '@testing-library/react';
 import BookingForm from './components/BookingForm';
-import Header from './components/Header';
 
-test('Renders the Header heading', () => {
-    render(<BrowserRouter><App /></BrowserRouter>);
-    const headingElement = screen.getByText("Reserve Table");
-    expect(headingElement).toBeInTheDocument();
+test("Booking Heading is rendered and form inputs work", () => {
+  const mockProps = {
+    availabeTimes: { availabeTimes: ["17:00", "18:00"] },
+    dispatch: jest.fn(),
+    submitForm: jest.fn()
+  };
 
-    const reserveButton = screen.getByRole("button");
-    fireEvent.click(reserveButton);
+  render(<BookingForm {...mockProps} />);
 
-    const headingElementNew = screen.getByText("Choose Date");
-    expect(headingElementNew).toBeInTheDocument();
-})
+  // Check heading
+  const heading = screen.getByText("Book Your Table Now!");
+  expect(heading).toBeInTheDocument();
 
-test('Initialize/Update Times', () => {
-  render(<BrowserRouter><App /></BrowserRouter>);
-  const reserveButton = screen.getByRole("button");
-  fireEvent.click(reserveButton);
+  // Interact with date input
+  const dateInput = screen.getByLabelText("Choose Date:");
+  fireEvent.change(dateInput, { target: { value: "2025-10-05" } });
+  expect(dateInput.value).toBe("2025-10-05");
 
-  const testTime = []
-  // userEvent.selectOptions(screen.getByLabelText("Choose Time"),screen.getByRole('option', { name: testTime}))
-  // expect(screen.getByRole('option', { name: testTime}).selected).toBe(true);
+  // Interact with time dropdown
+  const timeSelect = screen.getByLabelText("Choose Time:");
+  fireEvent.change(timeSelect, { target: { value: "17:00" } });
+  expect(timeSelect.value).toBe("17:00");
 
+  // Interact with guests input
+  const guestInput = screen.getByLabelText("Number of Guests:");
+  fireEvent.change(guestInput, { target: { value: "4" } });
+  expect(guestInput.value).toBe("4");
 
-})
+  // Interact with occasion select
+  const occasionSelect = screen.getByLabelText("Occasion:");
+  fireEvent.change(occasionSelect, { target: { value: "Anniversary" } });
+  expect(occasionSelect.value).toBe("Anniversary");
+
+  // Submit form using aria-label
+  const submitBtn = screen.getByLabelText("On Click");
+  fireEvent.click(submitBtn);
+
+  // Ensure submitForm mock was called with correct data
+  expect(mockProps.submitForm).toHaveBeenCalledWith({
+    date: "2025-10-05",
+    time: "17:00",
+    guest: "4",
+    occasion: "Anniversary"
+  });
+});
