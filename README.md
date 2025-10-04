@@ -3,7 +3,7 @@
 ## Project Description
 This project was created during Meta's Coursera Front-End Development course. It showcases a booking application for the Little Lemon Website, built with React components and utilizing API calls.
 
-**Note:** The only fully functional feature besides the design is the "Reserve a Table" function.
+# Note: The only fully functional feature besides the design is the "Reserve a Table" function.
 
 ## Features
 1. React component-based architecture
